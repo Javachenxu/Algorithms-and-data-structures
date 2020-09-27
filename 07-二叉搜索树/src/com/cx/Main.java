@@ -1,5 +1,6 @@
 package com.cx;
 
+import java.sql.Date;
 import java.util.Comparator;
 
 import com.cx.printer.BinaryTrees;
@@ -22,7 +23,7 @@ public class Main {
 		}
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 	Integer data[] = new Integer[] {
 			7,4,9,2,5,8,11,3,1,12,6,25
 	};
@@ -31,16 +32,40 @@ public class Main {
 		bst.add(data[i]);
 		}
 	BinaryTrees.println(bst);
+	}*/
+	static void test2() {
+		Integer data[] = new Integer[] {
+				7,4,9,2,5,8,11,3,1,12,6,25
+		};
+		BinarySearchtree<Person> bst1 = new BinarySearchtree<>();
+		for (int i = 0; i < data.length; i++) {
+			bst1.add(new Person(data[i]));
+			}
+		BinaryTrees.println(bst1);
+		
+		BinarySearchtree<Person> bst2 = new BinarySearchtree<>(new Comparator<Person>() {
+			public int compare(Person o1,Person o2) {
+				return o2.getAge() - o1.getAge();
+			}
+		});
+		for (int i = 0; i < data.length; i++) {
+			bst2.add(new Person(data[i]));
+			}
+		BinaryTrees.println(bst2);
+		
+		
+		}
+	
+	public static void main(String[] args) {
+	test2();	
+	}
+	
 	/*BinarySearchtree<Person> bst4 = new BinarySearchtree<>(new PersonComparetor());
 	bst4.add(new Person(12));
-	bst4.add(new Person(15));
+	bst4.add(new Person(15));*/
 
-	BinarySearchtree<Person> bst3 = new BinarySearchtree<>(new PersonComparetor2());
-	bst3.add(new Person(12));
-	bst3.add(new Person(15));
-	}*/
 	}
 
-}
+
 
 
