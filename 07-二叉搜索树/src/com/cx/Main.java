@@ -55,9 +55,16 @@ public class Main {
 		
 		
 		}
+	static void teat3() {
+		BinarySearchtree<Integer> bst3 = new BinarySearchtree<Integer>();
+		for (int i = 0; i < 30; i++) {
+			bst3.add((int)(Math.random() * 100));
+		}
+		BinaryTrees.println(bst3);
+	}
 	
 	public static void main(String[] args) {
-	test2();	
+	teat3();	
 	}
 	
 	/*BinarySearchtree<Person> bst4 = new BinarySearchtree<>(new PersonComparetor());
