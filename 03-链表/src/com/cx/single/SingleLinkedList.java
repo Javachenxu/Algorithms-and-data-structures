@@ -1,5 +1,5 @@
 package com.cx.single;
-
+//单向链表
 import com.cx.AbstractList;
 
 //import list.AbstractList;
