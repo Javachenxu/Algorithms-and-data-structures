@@ -16,7 +16,7 @@ package com.cx;
  * void clear(); //清除所有元素
  * 
  * */
-public class ArrayList<E> extends AbstractList<E>{
+public class ArrayList2<E> extends AbstractList<E>{
 	//元素的数量
 	
 	//所有的元素
@@ -43,11 +43,27 @@ public class ArrayList<E> extends AbstractList<E>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public ArrayList(int capacity) {
+	private void trim() {//O(n)
+		int oldcapacity = elements.length;
+		int newCapacity = oldcapacity >> 1;
+		if(size >= (newCapacity) || oldcapacity <= DEFAULT_CAPACITY) return;
+		
+		//剩余空间还很多
+		
+		E[] newElements = (E[]) new Object[newCapacity];
+		for (int i = 0; i < size; i++) {
+			newElements[i] = elements[i];
+		}
+		elements = newElements;
+		System.out.println(oldcapacity + "缩容为" + newCapacity);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList2(int capacity) {
 		capacity = (capacity < DEFAULT_CAPACITY)? DEFAULT_CAPACITY:capacity;
 		elements = (E[]) new Object[capacity];
 	}
-	public  ArrayList() {
+	public  ArrayList2() {
 		this(DEFAULT_CAPACITY);
 	}
 	/*
@@ -140,6 +156,7 @@ public class ArrayList<E> extends AbstractList<E>{
 		}
 		size--;
 		elements[size] = null;
+		trim();
 		return old;
 		
 	}

@@ -1,8 +1,10 @@
-package com.cx;
+package com.cx.single;
+
+import com.cx.AbstractList;
 
 //import list.AbstractList;
 
-public class LinkedList2<E> extends AbstractList<E> {
+public class SingleLinkedList<E> extends AbstractList<E> {
 	private int size;
 	private Node<E> first;
 	private static final int ELEMENT_NOT_FOUND = -1;
@@ -11,14 +13,10 @@ public class LinkedList2<E> extends AbstractList<E> {
 	 *@param index
 	 *@return
 	 */
-	
-	/*private LinkedList2 () {
-		first = new Node<>(null, null);
-	}*/
 	private Node<E> node(int index) {
 		rangeCheck(index);
 		
-		Node<E> node = first.next;
+		Node<E> node = first;
 		for (int i = 0; i < index; i++) {
 			node = node.next;
 		}
