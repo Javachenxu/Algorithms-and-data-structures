@@ -100,15 +100,24 @@ public class LinkedList<E> extends AbstractList<E> {
 		
 		rangeCheck(index);
 		
-		Node<E> node = first;
-		if (index == 0) {
-			first = first.next;
+		Node<E> node = node(index);
+		Node<E> prev = node.prev;
+		Node<E> next = node.next;
+		
+		if (prev == null) {//index == 0
+			first = next;
 		} else {
-			Node<E> prev = node(index - 1);
-			node = prev.next;
-			prev.next = node.next;
+			prev.next = next;
 		}
-	return node.element;
+		
+		if (null == null) {//index == size -1
+			last = prev;
+		} else {
+			next.prev = prev;
+		}
+		
+		size--;
+		return node.element;
 	}
 	@Override
 	public int indexOf(E element) {
