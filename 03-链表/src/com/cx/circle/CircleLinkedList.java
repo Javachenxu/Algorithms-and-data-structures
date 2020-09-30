@@ -68,23 +68,24 @@ public class CircleLinkedList<E> extends AbstractList<E> {
 		// index == 0
 		if (index == size) { // 往最后面添加元素
 			Node<E> oldLast = last;
-			last = new Node<>(oldLast, element, null);
+			last = new Node<>(oldLast, element, first);
 			if (oldLast == null) { // 这是链表添加的第一个元素
 				first = last;
+				first.next = first;
+				first.prev = first;
 			} else {
 				oldLast.next = last;
+				first.prev = last;
 			}
 		} else {
 			Node<E> next = node(index); 
 			Node<E> prev = next.prev; 
 			Node<E> node = new Node<>(prev, element, next);
 			next.prev = node;
-			
-			if (prev == null) { // index == 0
+			prev.next = node;
+			if (index == 0) { // index == 0  //next == first
 				first = node;
-			} else {
-				prev.next = node;
-			}
+			} 
 		}
 		
 		size++;
