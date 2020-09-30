@@ -5,7 +5,7 @@ import com.cx.AbstractList;
 public class CircleLinkedList<E> extends AbstractList<E> {
 	private Node<E> first;
 	private Node<E> last;
-	private Node<E> current; 
+	private Node<E> current;  //用来指向某个节点
 	
 	private static class Node<E> {
 		E element;
@@ -39,18 +39,18 @@ public class CircleLinkedList<E> extends AbstractList<E> {
 		}
 	}
 	
-	public void reset() {
+	public void reset() {//让current指向头结点first
 		current = first;
 	}
 	
-	public E next() {
+	public E next() {  //让current往后走一步，也就是current = current.next
 		if (current == null) return null;
 		
 		current = current.next;
 		return current.element;
 	}
 	
-	public E remove() {
+	public E remove() {  // 删除current指向的节点，删除成功后让current指向下一个节点
 		if (current == null) return null;
 		
 		Node<E> next = current.next; 
@@ -161,7 +161,7 @@ public class CircleLinkedList<E> extends AbstractList<E> {
 				
 				node = node.next;
 			}
-		}
+		}																				
 		return ELEMENT_NOT_FOUND;
 	}
 	
