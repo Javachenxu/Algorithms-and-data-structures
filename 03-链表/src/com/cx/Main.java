@@ -1,5 +1,7 @@
 package com.cx;
 
+import com.cx.circle.SingleCircleLinkedList;
+
 public class Main {
 	
 	static void testlist(List<Integer> list) {
@@ -23,7 +25,7 @@ public class Main {
 		Asserts.test(list.get(1) == 66);
 		Asserts.test(list.get(list.size() - 1) == 44);
 		
-		System.out.println(list);
+ 		System.out.println(list);
 	
 	}
 
@@ -43,9 +45,10 @@ public class Main {
 			list.remove(0);
 		}*/
 		
-		testlist(new ArrayList<>());
-		testlist(new LinkedList<>());
+		//testlist(new ArrayList<>());
+		//testlist(new LinkedList<>());
 		
+		testlist(new SingleCircleLinkedList<>());
 		//System.out.println(list);
 		
 	}
