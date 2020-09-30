@@ -1,6 +1,7 @@
 package com.cx;
 
-import com.cx.circle.SingleCircleLinkedList;
+import com.cx.circle.CircleLinkedList;
+//import com.cx.circle.SingleCircleLinkedList;
 
 public class Main {
 	
@@ -48,7 +49,8 @@ public class Main {
 		//testlist(new ArrayList<>());
 		//testlist(new LinkedList<>());
 		
-		testlist(new SingleCircleLinkedList<>());
+		testlist(new CircleLinkedList<>());
+		//testlist(new SingleCircleLinkedList<>());
 		//System.out.println(list);
 		
 	}

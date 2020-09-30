@@ -94,23 +94,29 @@ public class CircleLinkedList<E> extends AbstractList<E> {
 	@Override
 	public E remove(int index) {
 		rangeCheck(index);
-
-		Node<E> node = node(index);
-		Node<E> prev = node.prev;
-		Node<E> next = node.next;
 		
-		if (prev == null) { // index == 0
-			first = next;
+		Node<E> node = first;
+		if (size == 1) {
+			first = null;
+			last = null;
 		} else {
+			node = node(index);
+			Node<E> prev = node.prev;
+			Node<E> next = node.next;
 			prev.next = next;
-		}
-		
-		if (next == null) { // index == size - 1
-			last = prev;
-		} else {
 			next.prev = prev;
+			
+			if (node == first) { // index == 0
+				first = next;
+			} 
+			
+			if (next == last) { // index == size - 1
+				last = prev;
+			} 
+
 		}
 		
+				
 		size--;
 		return node.element;
 	}
