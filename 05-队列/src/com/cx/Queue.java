@@ -1,7 +1,7 @@
 package com.cx;
 
 
-//使用双向链表构造队列
+//使用双向链表为基础构造队列
 import com.cx.list.LinkedList;
 import com.cx.list.List;
 
