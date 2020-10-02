@@ -1,6 +1,7 @@
 package list;
 
 //import list;
+//抽象出公共类
 
 public abstract class AbstractList<E> implements List<E> {
 	
