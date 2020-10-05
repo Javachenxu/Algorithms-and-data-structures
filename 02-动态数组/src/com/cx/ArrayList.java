@@ -1,7 +1,7 @@
 package com.cx;
-//动态数组接口设计
+//动态数组
 /*
- * 
+ * 接口设计：
  * int size(); //元素的数量
  * boolean isEmpty();//是否为空
  * boolean contains(E element); //是否包含某个元素

@@ -1,5 +1,5 @@
 package com.cx;
-
+//时间计算函数
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
