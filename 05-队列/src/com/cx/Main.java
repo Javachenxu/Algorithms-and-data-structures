@@ -1,5 +1,6 @@
 package com.cx;
 
+import com.cx.circle.CircleDeque;
 import com.cx.circle.CircleQueue;
 
 public class Main {
@@ -22,9 +23,28 @@ public class Main {
 		}
 	}
 	
+	static void test3() {
+		CircleDeque<Integer> queue = new CircleDeque<>();
+		
+		for (int i = 0; i < 10; i++) {
+			queue.enQueneFront(i + 1);
+			queue.enQueueRear(i + 100);
+		}
+		for (int i = 0; i < 3; i++) {
+			queue.deQueueFront();
+			queue.deQueneRear();
+		}
+		queue.enQueneFront(11);
+		queue.enQueneFront(12);
+		System.out.println(queue);
+		while (!queue.isEmpty()) {
+			System.out.println(queue.deQueueFront());
+		}
+	}
 	public static void main(String[] args) {
 		
-		test2();
+		//test2();
+		test3();
 		//普通队列
 	/*	Queue<Integer> queue = new Queue<>();
 		queue.enQueue(11);
