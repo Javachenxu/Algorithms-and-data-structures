@@ -8,7 +8,9 @@ public class CircleQueue<E> {
 	private int size;
 	private E[] elements;
 	private static final int DEFAULT_CAPACITY= 10;
-	
+	private int index(int index) {
+		return (front + index) % elements.length;
+	}
 	
 	public CircleQueue() {
 		elements = (E[]) new Object[DEFAULT_CAPACITY];
@@ -24,7 +26,7 @@ public class CircleQueue<E> {
 	
 	public void enQueue(E element) {
 		ensureCapacity(size + 1);
-		elements[(front + size) % elements.length] = element;
+		elements[index(size)] = element;
 		size++;
 	}
 	
@@ -32,7 +34,7 @@ public class CircleQueue<E> {
 		
 		E frontelement = elements[front];
 		elements[front] = null;
-		front = (front + 1) % elements.length;
+		front = index(1);
 		size--;
 		return frontelement;
 	}
@@ -61,6 +63,7 @@ public class CircleQueue<E> {
 	/*
 	 * 保证要有capacity的容量
 	 * @param capacity
+	 *    动态扩容
 	 */
 	private void ensureCapacity(int capacity) {
 		int oidCapacity = elements.length;
@@ -71,7 +74,7 @@ public class CircleQueue<E> {
 		@SuppressWarnings("unchecked")
 		E[] newElements = (E[]) new Object[newCapacity];
 		for (int i = 0; i < size; i++) {
-			newElements[i] = elements[(i + front) % elements.length];
+			newElements[i] = elements[index(i)];
 		}
 		elements = newElements;
 		front = 0;
