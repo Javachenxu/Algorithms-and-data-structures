@@ -3,7 +3,7 @@ package com.cx;
 import com.cx.circle.CircleQueue;
 
 public class Main {
-	
+	//循环队列测试类
 	static void test2() {
 		CircleQueue<Integer> queue = new CircleQueue<>();
 		
@@ -25,7 +25,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		test2();
-		
+		//普通队列
 	/*	Queue<Integer> queue = new Queue<>();
 		queue.enQueue(11);
 		queue.enQueue(22);
@@ -36,7 +36,7 @@ public class Main {
 		while(!queue.isEmpty()) {
 			System.out.println(queue.deQueue());
 		}
-		
+		//双端队列
 		Deque<Integer> queue = new Deque<>();
 		queue.enQuenefront(11);
 		queue.enQuenefront(22);
