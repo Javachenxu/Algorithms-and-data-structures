@@ -22,7 +22,7 @@ public class Deque<E> {
 		return list.remove(0);
 	}
 	
-	public void enQuenefront(E element) {
+	public void enQueneFront(E element) {
 		list.add(0,element);
 	}
 	
