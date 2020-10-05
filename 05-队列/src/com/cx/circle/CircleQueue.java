@@ -26,6 +26,15 @@ public class CircleQueue<E> {
 		return size == 0;
 	}
 	
+	private void clear() {
+		
+		for (int i = 0; i < size; i++) {
+			elements[index(i)] = null;
+		}
+		size = 0;
+		front = 0;
+	}
+	
 	public void enQueue(E element) {
 		ensureCapacity(size + 1);
 		elements[index(size)] = element;
