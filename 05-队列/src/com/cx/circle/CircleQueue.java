@@ -1,5 +1,5 @@
 package com.cx.circle;
-//循环队列
+//循环队列使用动态数组为基础
 @SuppressWarnings("unchecked")
 public class CircleQueue<E> {
 	
