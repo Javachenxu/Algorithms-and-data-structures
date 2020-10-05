@@ -22,6 +22,7 @@ public class CircleQueue<E> {
 	}
 	
 	public void enQueue(E element) {
+		ensureCapacity(size + 1);
 		elements[(front + size) % elements.length] = element;
 		size++;
 	}
@@ -55,5 +56,24 @@ public class CircleQueue<E> {
 		string.append("]");
 		return string.toString();
 		
+	}
+	/*
+	 * 保证要有capacity的容量
+	 * @param capacity
+	 */
+	private void ensureCapacity(int capacity) {
+		int oidCapacity = elements.length;
+		if (oidCapacity >= capacity) return;
+		
+		//新容量为旧容量的1.5倍
+		int newCapacity = oidCapacity + (oidCapacity >> 1);
+		@SuppressWarnings("unchecked")
+		E[] newElements = (E[]) new Object[newCapacity];
+		for (int i = 0; i < size; i++) {
+			newElements[i] = elements[(i + front) % elements.length];
+		}
+		elements = newElements;
+		front = 0;
+		System.out.println(oidCapacity + "扩容为" + newCapacity);
 	}
 }
