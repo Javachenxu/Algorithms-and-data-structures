@@ -47,6 +47,8 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {
 		}
 		//添加后续节点
 		//找到父节点
+		//创建新节点node
+		//parent.left = node 或者 parent.right = node
 		
 		Node<E> parent = null;
 		
@@ -54,7 +56,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {
 		int cmp = 0;
 		while (node != null) {
 			cmp = compare(element, node.element);
-			parent = node;
+			parent = node;//父节点
 			if (cmp > 0) {
 				node = node.right;
 			} else if (cmp < 0) {
@@ -70,6 +72,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {
 		} else {
 			parent.leaf = newNode;
 		}
+		size++;
 	}
 	//删除
 	public void remove(E element) {
@@ -92,7 +95,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {
 	}
 	
 	private void elementNotNullCheck(E element) {
-		if (element == null) {
+		if (element == null) {//非法参数异常
 			throw new IllegalArgumentException("element must not be null");
 		}
 	}
