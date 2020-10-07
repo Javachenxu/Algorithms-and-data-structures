@@ -12,7 +12,8 @@ import com.cx.printer.BinaryTreeInfo;
  * void remove(E element) // 删除元素
  * boolean contains(E element) // 是否包含某元素
  */
-public class BinarySearchtree<E> implements BinaryTreeInfo {
+@SuppressWarnings("unchecked")
+public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 	
 	private int size;
 	private Node<E> root;
@@ -87,6 +88,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {
 	 * @return 返回值等于0，代表e1与e2相等，返回值大于0，代表e1大于e2,
 	 * 返回值小于0，代表e1小于e2.
 	 */
+	
 	private int compare(E e1,E e2) {
 		if (comparetor != null) {
 			return comparetor.compare(e1, e2);
