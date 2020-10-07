@@ -5,6 +5,7 @@ import java.util.Comparator;
 
 import com.cx.printer.BinaryTrees;
 
+@SuppressWarnings("unused")
 public class Main {
 	
 	private static class PersonComparetor implements Comparator<Person> {
