@@ -8,7 +8,7 @@ package 栈结构;
  */
 import java.util.HashMap;
 import java.util.Stack;
-
+//使用hashmap实现
 //LeetCode第20题有效的括号
 public class _20_有效的括号 {
 	private static HashMap<Character, Character> map = new HashMap<>();
