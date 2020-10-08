@@ -15,19 +15,24 @@ package com.cx;
  * 
  * */
 public class ArrayList<E> {
+	
 	//元素的数量
 	private int size;
+	
 	//所有的元素
 	private E[] elements;
+	
 	private void outOfBounds(int index) {
 		throw new IndexOutOfBoundsException("Index:" + index + "Size" + size);
 	}
+	
 	//检查范围
 	private void rangeCheck(int index) {
 		if(index < 0 || index >= size) {
 			outOfBounds(index);
 		}
 	}
+	
 	//添加操作检查范围
 	private void rangeCheckAdd(int index) {
 		if (index < 0 || index > size) {
