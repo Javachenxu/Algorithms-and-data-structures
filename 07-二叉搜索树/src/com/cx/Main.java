@@ -44,6 +44,9 @@ public class Main {
 			}
 		BinaryTrees.println(bst1);
 		
+		/*
+		 * java的匿名类，类似于iOS的Block，JS中的function
+		 */
 		BinarySearchtree<Person> bst2 = new BinarySearchtree<>(new Comparator<Person>() {
 			public int compare(Person o1,Person o2) {
 				return o2.getAge() - o1.getAge();
