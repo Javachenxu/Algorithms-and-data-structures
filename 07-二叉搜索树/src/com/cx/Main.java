@@ -60,6 +60,7 @@ public class Main {
 		
 		}
 	static void teat3() {
+		//Integer以及其他几个内置的类型，基本上都实现了comparable接口
 		BinarySearchtree<Integer> bst3 = new BinarySearchtree<Integer>();
 		for (int i = 0; i < 30; i++) {
 			bst3.add((int)(Math.random() * 100));
