@@ -108,10 +108,24 @@ public class Main {
 		
 		BinaryTrees.println(bst);
 		}
+	static void test6() {
+		Integer data[] = new Integer[] {
+				7,4,9,2,5,8,11,3,1,12,6,25
+		};
+		BinarySearchtree<Integer> bst = new BinarySearchtree<>();
+		for (int i = 0; i < data.length; i++) {
+			bst.add(data[i]);
+			}
+		BinaryTrees.println(bst);
+		
+		//bst.preorderTraversal();
+		//bst.inorderTraversal();
+		bst.postorderTraversal();
+	}
 	
 	public static void main(String[] args) {
 		
-	test5();
+	test6();
 	//test2();
 	//test3();	
 	//test4();
