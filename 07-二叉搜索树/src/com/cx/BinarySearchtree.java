@@ -41,13 +41,27 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 	public void preorderTraversal() {
 		preorderTraversal(root);
 	}
-	protected void preorderTraversal(Node<E> node) {
+	private void preorderTraversal(Node<E> node) {
 		if (node == null) return;
 		
 		System.out.println(node.element);
 		preorderTraversal(node.leaf);
 		preorderTraversal(node.right);
 		
+	}
+	
+	//二叉树中序遍历
+	
+	public void inorderTraversal() {
+		inorderTraversal(root);
+	}
+	
+	private void inorderTraversal(Node<E> node) {
+		if (node == null) return;
+		
+		inorderTraversal(node.leaf);
+		System.out.println(node.element);
+		inorderTraversal(node.right);
 	}
 
 	
@@ -77,6 +91,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 			} else if (cmp < 0) {
 				node = node.leaf;
 			} else {//相等
+				node.element = element;
 				return;
 			} 
 		}
