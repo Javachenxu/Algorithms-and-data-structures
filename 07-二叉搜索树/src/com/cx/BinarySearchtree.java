@@ -1,5 +1,7 @@
 package com.cx;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import com.cx.printer.BinaryTreeInfo;
 
@@ -50,7 +52,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 		
 	}
 	
-	//二叉树中序遍历
+	//二叉树中序遍历(递归实现)
 	
 	public void inorderTraversal() {
 		inorderTraversal(root);
@@ -64,7 +66,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 		inorderTraversal(node.right);
 	}
 	
-	//二叉树后序遍历
+	//二叉树后序遍历(递归实现)
 	
 	public void postorderTraversal() {
 		postorderTraversal(root);
@@ -76,6 +78,38 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 		postorderTraversal(node.leaf);
 		postorderTraversal(node.right);
 		System.out.println(node.element);
+	}
+	
+	//二叉树层序遍历(使用队列实现)
+	
+	/*
+	 * 1.将根节点入队
+	 * 2.循环执行以下操作，直到队列为空
+	 * 2.1将队头节点A出队，进行访问
+	 * 2.2将A的左子节点入队
+	 * 2.3将A的右子节点入队
+	 */
+	
+	public void levelOrderTraversal() {
+		if (root == null) return;
+		
+		Queue<Node<E>> queue = new LinkedList<>();
+		queue.offer(root);
+		
+		while (!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			System.out.println(node.element);
+			
+			if (node.leaf != null) {
+				queue.offer(node.leaf);
+			}
+			
+
+			if (node.right != null) {
+				queue.offer(node.right);
+			}
+			
+		}
 	}
 
 	
