@@ -2,8 +2,13 @@
 
 public class Person implements Comparable<Person> {
 	private int age;
+	private String name;
 	public Person(int age) {
 		this.age = age;
+	}
+	public Person(int age,String name) {
+		this.age = age;
+		this.name = name;
 	}
 	@Override
 	public int compareTo(Person e) {

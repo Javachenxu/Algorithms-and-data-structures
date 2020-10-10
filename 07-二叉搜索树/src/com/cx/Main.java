@@ -3,6 +3,7 @@ package com.cx;
 import java.sql.Date;
 import java.util.Comparator;
 
+import com.cx.printer.BinaryTreeInfo;
 import com.cx.printer.BinaryTrees;
 
 @SuppressWarnings("unused")
@@ -23,17 +24,18 @@ public class Main {
 			return e2.getAge() - e1.getAge();
 		}
 	}
+	
+	static void test1() {
+		Integer data[] = new Integer[] {
+				7,4,9,2,5,8,11,3,1,12,6,25
+		};
+		BinarySearchtree<Integer> bst = new BinarySearchtree<>();
+		for (int i = 0; i < data.length; i++) {
+			bst.add(data[i]);
+			}
+		BinaryTrees.println(bst);
+	}
 
-	/*public static void main(String[] args) {
-	Integer data[] = new Integer[] {
-			7,4,9,2,5,8,11,3,1,12,6,25
-	};
-	BinarySearchtree<Integer> bst = new BinarySearchtree<>();
-	for (int i = 0; i < data.length; i++) {
-		bst.add(data[i]);
-		}
-	BinaryTrees.println(bst);
-	}*/
 	static void test2() {
 		Integer data[] = new Integer[] {
 				7,4,9,2,5,8,11,3,1,12,6,25
@@ -59,7 +61,7 @@ public class Main {
 		
 		
 		}
-	static void teat3() {
+	static void test3() {
 		//Integer以及其他几个内置的类型，基本上都实现了comparable接口
 		BinarySearchtree<Integer> bst3 = new BinarySearchtree<Integer>();
 		for (int i = 0; i < 30; i++) {
@@ -68,8 +70,51 @@ public class Main {
 		BinaryTrees.println(bst3);
 	}
 	
+	static void test4() {
+			BinaryTrees.println(new BinaryTreeInfo() {
+			
+			@Override
+			public Object string(Object node) {
+				return node.toString() + "_";
+			}
+			
+			@Override
+			public Object root() {
+				return "A";
+			}
+			
+			@Override
+			public Object right(Object node) {
+				if (node.equals("A")) return "B";
+				if (node.equals("C")) return "E";
+				return null;
+			}
+			
+			@Override
+			public Object left(Object node) {
+				if (node.equals("A")) return "C";
+				if (node.equals("C")) return "D";
+				return null;
+			}
+		});
+	}
+	
+	static void test5() {
+		BinarySearchtree<Person> bst = new BinarySearchtree<>();
+		bst.add(new Person(10,"jack" ));
+		bst.add(new Person(12,"mark" ));
+		bst.add(new Person(6,"rose" ));
+		//bst.add(new Person(, ));
+		
+		BinaryTrees.println(bst);
+		}
+	
 	public static void main(String[] args) {
-	teat3();	
+		
+	test5();
+	//test2();
+	//test3();	
+	//test4();
 	}
 	
 	/*BinarySearchtree<Person> bst4 = new BinarySearchtree<>(new PersonComparetor());
