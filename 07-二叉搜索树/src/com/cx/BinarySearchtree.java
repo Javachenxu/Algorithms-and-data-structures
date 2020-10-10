@@ -37,6 +37,20 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 	public void clear() {
 		
 	}
+	//二叉树前序遍历(递归实现)
+	public void preorderTraversal() {
+		preorderTraversal(root);
+	}
+	protected void preorderTraversal(Node<E> node) {
+		if (node == null) return;
+		
+		System.out.println(node.element);
+		preorderTraversal(node.leaf);
+		preorderTraversal(node.right);
+		
+	}
+
+	
 	//添加
 	public void add(E element) {
 		elementNotNullCheck(element);
