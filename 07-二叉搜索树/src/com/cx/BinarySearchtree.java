@@ -142,9 +142,14 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 		return ((Node<E>)node).right;
 	}
 	@Override
+	//打印出parent节点
 	public Object string(Object node) {
-		
-		return ((Node<E>)node).element;
+		Node<E> myNode = (Node<E>)node;
+		String parentString = "null";
+		if (myNode.parent != null) {
+			parentString = myNode.parent.element.toString();
+		}
+		return myNode.element + "_p(" + parentString + ")";
 	}
 }
 
