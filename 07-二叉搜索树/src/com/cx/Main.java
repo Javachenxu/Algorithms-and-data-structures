@@ -118,9 +118,10 @@ public class Main {
 			}
 		BinaryTrees.println(bst);
 		
-		//bst.preorderTraversal();
-		//bst.inorderTraversal();
-		bst.postorderTraversal();
+		//bst.preorderTraversal();//前序遍历
+		//bst.inorderTraversal();//中序遍历
+		//bst.postorderTraversal();//后序遍历
+		bst.levelOrderTraversal();//层序遍历
 	}
 	
 	public static void main(String[] args) {
