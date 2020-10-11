@@ -116,6 +116,30 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 		inorderTraversal(node.right);
 	}
 	
+	//二叉树中序遍历(非递归实现)
+	
+		/*思路：
+		 * 先访问根节点的左子树，依次往下直到左子树为空，再取出栈顶元素，并且打印栈顶元素，
+		 * 最后，栈顶元素(访问完左子树的根节点)作为新的根节点去访问右子树。
+		 */
+		
+		public void inorderTraversal1() {
+			Node<E> node = root;
+			if (node == null) return;
+			
+			Stack<E> stack = new Stack<>();
+			while (!stack.isEmpty() || node != null) {
+				while (node != null) {
+					stack.push((E) node);//强制转换为泛型
+					node = node.leaf;
+				}		
+					node = (Node<E>) stack.pop();
+					System.out.println(node.element);
+					
+					node = node.right;
+			}
+		}
+	
 	//二叉树后序遍历(递归实现)
 	
 	public void postorderTraversal() {
