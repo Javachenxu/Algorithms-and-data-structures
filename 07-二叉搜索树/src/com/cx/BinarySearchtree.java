@@ -1,8 +1,11 @@
 package com.cx;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
+
 
 import com.cx.printer.BinaryTreeInfo;
 
@@ -48,7 +51,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 		if (node == null) return;
 		
 		System.out.println(node.element);
-		preorderTraversal(node.leaf);
+		preorderTraversal(node.left);
 		preorderTraversal(node.right);
 		
 	}
@@ -71,7 +74,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 				
 				stack.push((E) node);//前序遍历，先访问节点，
 				System.out.print(node.element+ "_");//打印根节点
-				node = node.leaf;//访问左子树
+				node = node.left;//访问左子树
 			}
 				node = (Node<E>) stack.pop();//栈顶元素出栈
 				node = node.right;//栈顶元素作为新的根节点访问右子树
@@ -96,8 +99,8 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 			if (node.right != null) {
 				stack.push((E) node.right);
 			}
-			if (node.leaf != null) {
-				stack.push((E) node.leaf);
+			if (node.left != null) {
+				stack.push((E) node.left);
 			}
 		}
 	}
@@ -111,7 +114,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 	private void inorderTraversal(Node<E> node) {
 		if (node == null) return;
 		
-		inorderTraversal(node.leaf);
+		inorderTraversal(node.left);
 		System.out.println(node.element);
 		inorderTraversal(node.right);
 	}
@@ -126,15 +129,15 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 		public void inorderTraversal1() {
 			Node<E> node = root;
 			if (node == null) return;
-			
+			System.out.println("中序遍历为");
 			Stack<E> stack = new Stack<>();
 			while (!stack.isEmpty() || node != null) {
 				while (node != null) {
 					stack.push((E) node);//强制转换为泛型
-					node = node.leaf;
+					node = node.left;
 				}		
 					node = (Node<E>) stack.pop();
-					System.out.println(node.element);
+					System.out.println(node.element + "_");
 					
 					node = node.right;
 			}
@@ -143,15 +146,88 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 	//二叉树后序遍历(递归实现)
 	
 	public void postorderTraversal() {
+		System.out.println("后序遍历为：");
 		postorderTraversal(root);
+		System.out.print("\n");
+		
 	}
 	
 	private void postorderTraversal(Node<E> node) {
 		if(node == null) return;
 		
-		postorderTraversal(node.leaf);
+		postorderTraversal(node.left);
 		postorderTraversal(node.right);
-		System.out.println(node.element);
+		System.out.print(node.element + " ");
+		
+	}
+	
+	//二叉树后序遍历(非递归实现思路一)
+	
+	/*
+	 * 思路：当左孩子完成打印并从栈中弹出父结点的时候，此时需要判断右孩子需不需要打印，有两种情况：
+	 * 1.如果右孩子为空，或者右孩子已经完成了打印，则打印当前的结点
+	 * 2.右孩子未打印过，则需要将右孩子入栈
+	 * 这里设置一个指针last来标记上一次打印的结点，这样只要判断last是不是右孩子就知道右孩子打印过没有了
+	 * 具体步骤为：
+	 * 1.不断往左子树深入并不断入栈直到左叶子的空左孩子
+	 * 2.弹出栈顶，如果右孩子为null或者last是右孩子，则打印当前值；如果不是，则将指针指向右孩子
+	 * 3.循环1,2步骤直至栈为空且指针也为空
+	 */
+	
+	public void postorderTraversal1() {
+		Node<E> node = root;//保证root为完整二叉树
+		Node<E> last = null;//设计一个last指针，标记上一次打印的结点
+		if (node == null) return;//边界判断
+		System.out.println("后序遍历为：");
+		Stack<E> stack = new Stack<>();
+		while (node != null || !stack.isEmpty()) {
+			while (node != null) {
+				stack.push((E) node);
+				node = node.left;
+			}
+			if (!stack.isEmpty()) {
+				Node<E> t = (Node<E>) stack.pop();
+				if (t.right == null || last == t.right) {
+					System.out.print(t.element + " ");
+					last = t;
+				} else {
+					stack.push((E) t);
+					node = t.right;
+				}
+			}
+		}
+	}
+	//二叉树后序遍历(非递归实现思路二)
+	
+	/*
+	 * 思路：用一个线性表存放后序遍历的结果。我们知道后序遍历是左右根，
+	 * 但是我们可以反过来，一样先访问根，只是将根放在后边然后访问右子树放在根的前边左子树的后边，
+	 * 我们可以用线性表头插来实现这个操作，先访问根再左子树再右子树，
+	 * 只是每次都对线性表进行头插，这样最后的结果就还是左右根。
+	 */
+	
+	public List<E>  postorderTraversal2() {
+		Stack<E> stack = new Stack<>();
+		List<E> list = new LinkedList<>();
+		Node<E> node = root;
+		if (node == null) return list;
+		stack.push((E) node);
+		stack.add((E) root);
+		
+        while (!stack.isEmpty()) {
+            node = (Node<E>) stack.pop();
+            list.add(0,node.element);//每次在链表的头部插入元素
+            if (node.left != null) {  //注意与前序对比着看 
+                stack.push((E) node.left);
+            }
+            if (node.right != null) {
+                stack.push((E) node.right);
+            }
+            
+        }
+        //System.out.print(list);
+        System.out.print(node.element + "_");
+        return list;
 	}
 	
 	//二叉树层序遍历(使用队列实现)
@@ -174,8 +250,8 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 			Node<E> node = queue.poll();
 			System.out.println(node.element);
 			
-			if (node.leaf != null) {
-				queue.offer(node.leaf);
+			if (node.left != null) {
+				queue.offer(node.left);
 			}
 			
 
@@ -211,7 +287,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 			if (cmp > 0) {
 				node = node.right;
 			} else if (cmp < 0) {
-				node = node.leaf;
+				node = node.left;
 			} else {//相等
 				node.element = element;
 				return;
@@ -222,7 +298,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 		if (cmp > 0) {
 			parent.right = newNode;
 		} else {
-			parent.leaf = newNode;
+			parent.left = newNode;
 		}
 		size++;
 	}
@@ -255,7 +331,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 	
 	private static class Node<E> {
 		E element;
-		Node<E> leaf;
+		Node<E> left;
 		Node<E> right;
 		Node<E> parent;//父节点
 		
@@ -272,7 +348,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 	}
 	@Override
 	public Object left(Object node) {
-		return ((Node<E>)node).leaf;
+		return ((Node<E>)node).left;
 	}
 	@Override
 	public Object right(Object node) {
