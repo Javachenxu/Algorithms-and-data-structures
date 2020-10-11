@@ -118,10 +118,15 @@ public class Main {
 			}
 		BinaryTrees.println(bst);
 		
-		//bst.preorderTraversal();//前序遍历
-		//bst.inorderTraversal();//中序遍历
-		//bst.postorderTraversal();//后序遍历
-		bst.levelOrderTraversal();//层序遍历
+		//bst.preorderTraversal();//前序遍历(递归实现)
+		//bst.preorderTraversal1();//前序遍历(非递归实现思路一)
+		//bst.preorderTraversal2();//前序遍历(非递归实现思路二)
+		
+		//bst.inorderTraversal();//中序遍历(递归实现)
+		//bst.inorderTraversal1();//中序遍历(非递归实现)
+		bst.postorderTraversal2();//后序遍历(递归实现)
+		//bst.postorderTraversal1();//后序遍历(非递归实现)
+		//bst.levelOrderTraversal();//层序遍历
 	}
 	
 	public static void main(String[] args) {
