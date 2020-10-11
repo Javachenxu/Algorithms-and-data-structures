@@ -225,8 +225,8 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
             }
             
         }
-        //System.out.print(list);
-        System.out.print(node.element + "_");
+        System.out.print(list);
+  
         return list;
 	}
 	
