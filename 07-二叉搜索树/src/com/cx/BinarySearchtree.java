@@ -385,7 +385,90 @@ public boolean isComplete() {
 		return true;
 	}
 
-	//翻转二叉树
+	//前驱节点
+	/*
+	 前驱节点：中序遍历时的前一个节点
+ 	如果是二叉搜索树，前驱节点就是前一个比它小的节点
+	◼node.left != null
+ 	举例：6、13、8
+ 	predecessor = node.left.right.right.right...
+	✓ 终止条件：right 为 null
+	◼ node.left == null && node.parent != null
+ 	举例：7、11、9、1
+ 	predecessor = node.parent.parent.parent...
+	✓ 终止条件：node 在 parent 的右子树中
+	◼ node.left == null && node.parent == null
+ 	那就没有前驱节点
+ 	举例：没有左子树的根节点
+	 */
+	
+	@SuppressWarnings("unused")
+	private Node<E> predecessor(Node<E> node) {
+		if (node == null) return null;
+		
+		//前驱节点在左子树当中(leaf.right.right...)
+		Node<E> p = node.left;
+		if (p != null) {
+			while (p.right != null) {
+				p = p.right;
+			}
+			return p;
+		}
+		
+		//前驱节点在父节点、祖父节点中寻找
+		
+		while (node.parent != null && node == node.parent.left) {
+			node = node.parent;
+		}
+		
+		//node.parent == null
+		//node == node.parent.right
+		
+		return node.parent;
+	}
+	
+	//后继节点
+	/*
+	 ◼ 后继节点：中序遍历时的后一个节点
+ 	如果是二叉搜索树，后继节点就是后一个比它大的节点
+	◼ node.right != null
+ 	举例：1、8、4
+	successor = node.right.left.left.left...
+	✓ 终止条件：left 为 null
+	◼ node.right == null && node.parent != null
+ 	举例：7、6、3、11
+ 	successor = node.parent.parent.parent...
+	✓ 终止条件：node 在 parent 的左子树中
+	◼ node.right == null && node.parent == null
+ 	那就没有前驱节点
+	 */
+	
+	@SuppressWarnings("unused")
+	private Node<E> successor(Node<E> node) {
+		if (node == null) return null;
+		
+		//后继节点在右子树当中(right.left.left...)
+		Node<E> p = node.right;
+		if (p != null) {
+			while (p.left != null) {
+				p = p.left;
+			}
+			return p;
+		}
+		
+		//后继节点在父节点、祖父节点中寻找
+		
+		while (node.parent != null && node == node.parent.right) {
+			node = node.parent;
+		}
+		
+		//node.parent == null
+		//node == node.parent.left
+		
+		return node.parent;
+	}
+	
+	
 	
 	//添加
 	public void add(E element) {
@@ -490,6 +573,7 @@ public boolean isComplete() {
 			return left == null && right == null;
 		}
 		
+		@SuppressWarnings("unused")
 		public boolean hasTwoChildren() {
 			return left != null && right != null;
 		}
