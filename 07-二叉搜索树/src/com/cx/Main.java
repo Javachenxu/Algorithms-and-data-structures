@@ -110,7 +110,7 @@ public class Main {
 		}
 	static void test6() {
 		Integer data[] = new Integer[] {
-				7,4,9,2,5,8,11,3,1,12,6,25
+				7,4,9,2,1
 		};
 		BinarySearchtree<Integer> bst = new BinarySearchtree<>();
 		for (int i = 0; i < data.length; i++) {
@@ -118,13 +118,15 @@ public class Main {
 			}
 		BinaryTrees.println(bst);
 		
+		System.out.println(bst.isComplete());
+		
 		//bst.preorderTraversal();//前序遍历(递归实现)
 		//bst.preorderTraversal1();//前序遍历(非递归实现思路一)
 		//bst.preorderTraversal2();//前序遍历(非递归实现思路二)
 		
 		//bst.inorderTraversal();//中序遍历(递归实现)
 		//bst.inorderTraversal1();//中序遍历(非递归实现)
-		bst.postorderTraversal2();//后序遍历(递归实现)
+		//bst.postorderTraversal2();//后序遍历(递归实现)
 		//bst.postorderTraversal1();//后序遍历(非递归实现)
 		//bst.levelOrderTraversal();//层序遍历
 	}
