@@ -355,6 +355,10 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 		return false;
 	}
 	
+	/*
+	 * 利用前序遍历树状打印二叉树
+	 */
+	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		toString(root,sb,"");
