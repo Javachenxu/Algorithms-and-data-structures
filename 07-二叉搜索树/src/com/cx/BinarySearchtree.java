@@ -261,8 +261,52 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 			
 		}
 	}
-
 	
+	//求二叉树的高度
+	/*
+	 * 1.递归法
+	 * 树的高度即是根节点的高度
+	 */
+	public int height() {
+		return height(root);
+	}
+	
+	private int height(Node<E> node) {
+		if (node == null) return 0;
+		return 1 + Math.max(height(node.left), height(node.right));
+	}
+	/*
+	 * 2.非递归法
+	 *     层序遍历法
+	 */
+	
+	public int height1() {
+		if (root == null) return 0;
+		
+		int height = 0;
+		int levelSize = 1;
+		Queue<Node<E>> queue = new LinkedList<>();
+		queue.offer(root);
+		
+		while (!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			levelSize--;
+			
+			if (node.left != null) {
+				queue.offer(node.left);
+			}
+			
+			if (node.right != null) {
+				queue.offer(node.right);
+			}
+			if (levelSize ==0) {
+				levelSize = queue.size();
+				height++;
+			}
+			
+		}
+		return height;
+	}
 	//添加
 	public void add(E element) {
 		elementNotNullCheck(element);
@@ -310,6 +354,23 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 	public boolean contains(E element) {
 		return false;
 	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		toString(root,sb,"");
+		return sb.toString();
+	}
+	
+	private void toString(Node<E> node,StringBuilder sb,String prefix) {
+		if (node == null) return;
+		sb.append(prefix).append(node.element).append("\n");
+		toString(node.left,sb,prefix + "L---");
+		
+		toString(node.right,sb,prefix + "R---");
+		
+		
+	}
+	
 	//比较函数
 	/*
 	 * @return 返回值等于0，代表e1与e2相等，返回值大于0，代表e1大于e2,
