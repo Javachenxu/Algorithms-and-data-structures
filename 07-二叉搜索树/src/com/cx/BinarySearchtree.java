@@ -41,7 +41,8 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 	}
 	//清空
 	public void clear() {
-		
+		root = null;
+		size = 0;
 	}
 	//二叉树前序遍历(递归实现)
 	public void preorderTraversal() {
@@ -568,7 +569,7 @@ public boolean isComplete() {
 	}
 	//是否包含某元素
 	public boolean contains(E element) {
-		return false;
+		return node(element) != null;
 	}
 	
 	/*

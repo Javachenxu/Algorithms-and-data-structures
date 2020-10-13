@@ -131,12 +131,31 @@ public class Main {
 		//bst.levelOrderTraversal();//层序遍历
 	}
 	
+	static void test7() {
+		Integer data[] = new Integer[] {
+				7,4,9,2,5,8,11,3,1,12,6,25
+		};
+		BinarySearchtree<Integer> bst = new BinarySearchtree<>();
+		for (int i = 0; i < data.length; i++) {
+			bst.add((data[i]));
+			}
+		BinaryTrees.println(bst);
+		bst.remove(1);
+		bst.remove(9);
+		BinaryTrees.println(bst);
+		bst.clear();
+		BinaryTrees.println(bst);
+	}
+	
 	public static void main(String[] args) {
 		
-	test6();
+	//test1();
 	//test2();
 	//test3();	
 	//test4();
+	//test5();
+	//test6();
+	test7();
 	}
 	
 	/*BinarySearchtree<Person> bst4 = new BinarySearchtree<>(new PersonComparetor());
