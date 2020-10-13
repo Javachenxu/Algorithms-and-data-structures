@@ -511,7 +511,60 @@ public boolean isComplete() {
 	}
 	//删除
 	public void remove(E element) {
+		remove(node(element));
+	}
+	
+	private void remove(Node<E> node) {
+		if (node == null) return;
+		size--;
 		
+		if (node.hasTwoChildren()) {
+			//找到后继节点
+			Node<E> s = successor(node);
+			//用后继节点的值覆盖掉要删除的节点的值
+			node.element = s.element;
+			//删除后继节点
+			node = s;
+		}
+		//删除node节点(node的度必定是0/1)
+		Node<E> replacement = node.left != null ? node.left : node.right;
+		
+		if (replacement != null) {//node是度为1的节点
+			//更改parent
+			replacement.parent = node.parent;
+			//更改parent的left，right的指向
+			if (node.parent == null) {//要删除的节点度为1而且是根节点
+				root = replacement;
+			} else if (node == node.parent.left) {//要删除的节点度为1而且在父节点的左子树上
+				node.parent.left = replacement;
+			} else {//要删除的节点度为1而且在父节点的左子树上
+				node.parent.right = replacement;
+			}{
+
+			}
+		} else if(node.parent == null){//是叶子节点，并且是根节点
+			root = null;
+		} else {//是叶子节点，但并不是根节点
+			if (node == node.parent.right) {
+				node.parent.right = null;
+			} else {
+				node.parent.left = null;
+			}
+		}
+	}
+	
+	private Node<E> node(E element) {
+		Node<E> node = root;
+		while (node != null) {
+			int cmp = compare(element, node.element);
+			if (cmp == 0) return node;
+			if (cmp > 0) {
+				node = node.right;
+			} else {//cmp < 0
+				node = node.left;
+			}
+		}
+		return null;
 	}
 	//是否包含某元素
 	public boolean contains(E element) {
