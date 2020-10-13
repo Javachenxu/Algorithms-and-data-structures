@@ -350,7 +350,7 @@ public class BinarySearchtree<E> implements BinaryTreeInfo {//调用打印器
 //		}
 //		return true;
 //	}
-	
+	//判断是否为完全二叉树
 public boolean isComplete() {
 		
 		if (root == null) return false;
