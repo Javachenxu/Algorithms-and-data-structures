@@ -1,5 +1,7 @@
 package com.cx.tree;
 
+import com.cx.tree.BinaryTree.Node;
+
 public class AVLTree<E> extends BST<E> {
 	
 	protected void afterAdd(Node<E> node) {
@@ -43,12 +45,46 @@ public class AVLTree<E> extends BST<E> {
 		}
 	}
 	//左旋转
-	private void rotateLeft(Node<E> node) {
+	private void rotateLeft(Node<E> grand) {
+		Node<E> parent = grand.right;
+		Node<E> child = parent.left;
+		grand.parent = child;
+		parent.left = grand;
+		
+		afterRotate(grand, parent, child);
 		
 	}
 	//右旋转
-	private void rotateRight(Node<E> node) {
+	private void rotateRight(Node<E> grand)	{
+		Node<E> parent = grand.left;
+		Node<E> child = parent.right;
+		grand.left = child;
+		parent.right = grand;
 		
+		afterRotate(grand, parent, child);
+	}
+	
+	private void afterRotate(Node<E> grand,Node<E> parent,Node<E> child) {
+		//让parent成为子树的根节点
+				parent.parent = grand.parent;
+				if (grand.isLeftChild()) {
+					grand.parent.left = parent;
+				} else if (grand.isRightChild()){
+					grand.parent.right = parent;
+				} else {
+					root = parent;
+				}
+				//更新child的根节点
+				if (child != null) {
+					child.parent = grand;
+				}
+				//更新grand的根节点
+				
+				grand.parent = parent;
+				
+				//更新高度
+				updateHeight(grand);
+				updateHeight(parent);
 	}
 	
 	private boolean isBalanced(Node<E> node) {
@@ -86,6 +122,19 @@ public class AVLTree<E> extends BST<E> {
 			return isLeftChild() ? left : right;
 							
 		}
+
+		@Override
+		public String toString() {
+		
+			String parentString = "null";
+			if (parent != null) {
+				parentString = parent.element.toString();
+			}
+			return element + "_p(" + parentString + ")_h(" + height + ")";
+			
+		}
+		
+		
 		
 	}
 }
