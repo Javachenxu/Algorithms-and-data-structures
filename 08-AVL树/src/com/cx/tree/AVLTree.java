@@ -21,12 +21,26 @@ public class AVLTree<E> extends BST<E> {
 			} else {
 				//恢复平衡
 				rebalance(node);
-				//整棵树恢复平衡
 				break;
 			}
 		}
+		}
+
+	//删除
+	//只可能会导致父节点失衡，让父节点恢复平衡后，可能会导致更高层的祖父节点失衡【最多只需要O(logn)次调整】
+	@Override
+	protected void afterRemove(Node<E> node) {
+		while ((node = node.parent) != null) {
+			if (isBalanced(node)) {
+				//更新高度
+				updateHeight(node);
+			} else {
+				//恢复平衡
+				rebalance(node);
+				
+			}
+		}
 	}
-	
 	protected Node<E> createNode(E element,Node<E> parent) {
 		return new AVLNode<>(element, parent);
 	}
