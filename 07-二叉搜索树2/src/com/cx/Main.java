@@ -14,7 +14,7 @@ public class Main {
 
 	static void test1() {
 		Integer data[] = new Integer[] {
-				7, 4, 9, 2, 5, 8, 11, 3, 12, 1
+				76, 16, 29, 48, 45, 30
 		};
 		
 		BST<Integer> bst = new BST<>();
@@ -24,9 +24,7 @@ public class Main {
 		
 		BinaryTrees.println(bst);
 		
-		bst.remove(7);
 		
-		BinaryTrees.println(bst);
 	}
 	
 	static void test2() {
@@ -50,6 +48,6 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		test2();
+		test1();
 	}
 }
