@@ -6,6 +6,7 @@ import com.cx.tree.AVLTree;
 import com.cx.tree.BST;
 import com.cx.tree.BinaryTree;
 import com.cx.tree.BinaryTree.Visitor;
+import com.cx.tree.RBTree;
 
 public class Main {
 
@@ -23,17 +24,29 @@ public class Main {
 			
 		}
 		BinaryTrees.println(avl);
-//		for (int i = 0; i < data.length; i++) {
-//			avl.remove(data[i]);
-//			System.out.println("------------------");
-//			System.out.println("【" + data[i] + "】");
-//			BinaryTrees.println(avl);
-//		}
 		
+		
+	}
+	
+	static void test2() {
+		Integer data[] = new Integer[] {
+				87, 20, 7, 43, 16, 57, 36, 4, 54, 30, 59, 26, 33
+		};
+		
+		RBTree<Integer> rb = new RBTree<>();
+		for (int i = 0; i < data.length; i++) {
+			rb.add(data[i]);
+			//System.out.println("------------------");
+			//System.out.println("【" + data[i] + "】");
+			//BinaryTrees.println(avl);
+			
+		}
+		BinaryTrees.println(rb);
 		
 	}
 
 	public static void main(String[] args) {
-		test1();
+		//test1();
+		test2();
 	}
 }
