@@ -36,7 +36,7 @@ public class Main {
 		RBTree<Integer> rb = new RBTree<>();
 		for (int i = 0; i < data.length; i++) {
 			rb.add(data[i]);
-			//System.out.println("------------------");
+			//System.out.println("-------------------------------------");
 			//System.out.println("【" + data[i] + "】");
 			//BinaryTrees.println(avl);
 			
@@ -44,9 +44,26 @@ public class Main {
 		BinaryTrees.println(rb);
 		
 	}
-
+	static void test3() {
+		Integer data[] = new Integer[] {
+				87, 20, 7, 43, 16, 57, 36, 4, 54, 30, 59, 26, 33
+		};
+		
+		RBTree<Integer> rb = new RBTree<>();
+		for (int i = 0; i < data.length; i++) {
+			rb.add(data[i]);
+		}
+		BinaryTrees.println(rb);
+		for (int i = 0; i < data.length; i++) {
+			rb.remove(data[i]);
+			System.out.println("-------------------------------------");
+			System.out.println("【" + data[i] + "】");
+			BinaryTrees.println(rb);
+		}
+	}
 	public static void main(String[] args) {
 		//test1();
-		test2();
+		//test2();
+		test3();
 	}
 }
