@@ -87,4 +87,9 @@ public class BBST<E> extends BST<E> {
 		f.parent = d;
 		
 	}
+
+	protected void afterRemove(Node<E> node, Node<E> replacement) {
+		// TODO Auto-generated method stub
+		
+	}
 }
