@@ -13,6 +13,7 @@ import java.util.Comparator;
 
 import com.cx.tree.BinaryTree.Node;
 
+@SuppressWarnings("unused")
 public class RBTree<E> extends BBST<E> {
 	public static final boolean RED = false;
 	public static final boolean BLACK = true;
@@ -27,7 +28,7 @@ public class RBTree<E> extends BBST<E> {
 	@Override
 	protected void afterAdd(Node<E> node) {
 		Node<E> parent = node.parent;
-		//添加的是根节点
+		//添加的是根节点，同时也处理了上溢到根节点的染色
 		if (parent == null) {
 			black(node);
 			return;
@@ -38,7 +39,7 @@ public class RBTree<E> extends BBST<E> {
 		Node<E> uncle = parent.sibling();
 		//祖父节点
 		Node<E> grand = parent.parent;
-		//叔父节点是红色
+		//叔父节点是红色(上溢)
 		if (isRed(uncle)) {
 			black(parent);
 			black(uncle);
@@ -74,9 +75,15 @@ public class RBTree<E> extends BBST<E> {
 	}
 	
 	@Override
-	protected void afterRemove(Node<E> node) {
-		// TODO Auto-generated method stub
-		super.afterRemove(node);
+	protected void afterRemove(Node<E> node,Node<E> replacement) {
+		//如果删除的节点是红色
+		if (isRed(node)) return;
+		//用以取代node的子节点是红色
+		if (isRed(replacement)) {
+			black(replacement);
+			return;
+		}
+		//删除的黑色叶子节点
 	}
 	//染色
 	private Node<E> color(Node<E> node,boolean color) {
@@ -102,14 +109,12 @@ public class RBTree<E> extends BBST<E> {
 		return colorOf(node) == BLACK;
 	}
 	//是否为红色
-	@SuppressWarnings("unused")
 	private boolean isRed(Node<E> node) {
 		return colorOf(node) == RED;
 	}
 	
 	@Override
 	protected Node<E> createNode(E element, Node<E> parent) {
-		// TODO Auto-generated method stub
 		return new RBNode<>(element, parent);
 	}
 	private static class RBNode<E> extends Node<E> {
@@ -118,7 +123,6 @@ public class RBTree<E> extends BBST<E> {
 		boolean color = RED;
 		public RBNode(E element, Node<E> parent) {
 			super(element, parent);
-			
 		}
 
 		@Override
