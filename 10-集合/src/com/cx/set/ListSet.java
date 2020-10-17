@@ -24,12 +24,12 @@ public class ListSet<E> implements Set<E> {
 	}
 
 	@Override
-	public boolean contains(E element) {
+	public boolean contains(E element) {//O(n)
 		return list.contains(element);
 	}
 
 	@Override//添加操作
-	public void add(E element) {
+	public void add(E element) {//O(n)
 		//两种添加方法
 		//用contains函数找到不相同的元素
 //		if (list.contains(element)) return;
@@ -45,7 +45,7 @@ public class ListSet<E> implements Set<E> {
 	}
 
 	@Override
-	public void remove(E element) {
+	public void remove(E element) {//O(n)
 		int index = list.indexOf(element);
 		if (index != List.ELEMENT_NOT_FOUND) {
 			list.remove(index);
