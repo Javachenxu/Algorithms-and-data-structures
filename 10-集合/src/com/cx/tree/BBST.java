@@ -2,8 +2,6 @@ package com.cx.tree;
 
 import java.util.Comparator;
 
-import com.cx.tree.BinaryTree.Node;
-
 public class BBST<E> extends BST<E> {
 	public BBST() {
 		this(null);
@@ -12,7 +10,7 @@ public class BBST<E> extends BST<E> {
 	public BBST(Comparator<E> comparator) {
 		super(comparator);
 	}
-	
+
 	protected void rotateLeft(Node<E> grand) {
 		Node<E> parent = grand.right;
 		Node<E> child = parent.left;
@@ -47,8 +45,6 @@ public class BBST<E> extends BST<E> {
 		
 		// 更新grand的parent
 		grand.parent = parent;
-		
-		
 	}
 	
 	protected void rotate(
@@ -72,20 +68,16 @@ public class BBST<E> extends BST<E> {
 			c.parent = b;
 		}
 		
-		
 		// e-f
 		f.left = e;
 		if (e != null) {
 			e.parent = f;
 		}
 		
-		
 		// b-d-f
 		d.left = b;
 		d.right = f;
 		b.parent = d;
 		f.parent = d;
-		
 	}
-
 }

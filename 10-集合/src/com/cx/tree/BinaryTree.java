@@ -3,9 +3,6 @@ package com.cx.tree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
-
-@SuppressWarnings("unchecked")
 public class BinaryTree<E> {
 	protected int size;
 	protected Node<E> root;
@@ -150,7 +147,7 @@ public class BinaryTree<E> {
 		return 1 + Math.max(height(node.left), height(node.right));
 	}
 	
-	protected Node<E> createNode(E element,Node<E> parent) {
+	protected Node<E> createNode(E element, Node<E> parent) {
 		return new Node<>(element, parent);
 	}
 
@@ -209,7 +206,6 @@ public class BinaryTree<E> {
 		Node<E> left;
 		Node<E> right;
 		Node<E> parent;
-		
 		public Node(E element, Node<E> parent) {
 			this.element = element;
 			this.parent = parent;
@@ -226,20 +222,21 @@ public class BinaryTree<E> {
 		public boolean isLeftChild() {
 			return parent != null && this == parent.left;
 		}
+		
 		public boolean isRightChild() {
 			return parent != null && this == parent.right;
 		}
-		//兄弟节点
+		
 		public Node<E> sibling() {
 			if (isLeftChild()) {
 				return parent.right;
 			}
+			
 			if (isRightChild()) {
 				return parent.left;
 			}
+			
 			return null;
 		}
-		//
 	}
-
 }

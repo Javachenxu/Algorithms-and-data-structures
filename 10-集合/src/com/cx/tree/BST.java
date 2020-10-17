@@ -21,7 +21,8 @@ public class BST<E> extends BinaryTree<E> {
 		if (root == null) {
 			root = createNode(element, null);
 			size++;
-			//新添加节点之后的处理
+
+			// 新添加节点之后的处理
 			afterAdd(root);
 			return;
 		}
@@ -52,28 +53,27 @@ public class BST<E> extends BinaryTree<E> {
 			parent.left = newNode;
 		}
 		size++;
-		//新添加节点之后的处理
+		
+		// 新添加节点之后的处理
 		afterAdd(newNode);
 	}
+	
 	/**
-	 * 添加之后的调整
+	 * 添加node之后的调整
 	 * @param node 新添加的节点
 	 */
-	protected void afterAdd(Node<E> node) {
-		
-	}
+	protected void afterAdd(Node<E> node) { }
+	
 	/**
-	 * 删除之后的调整
-	 * @param node 被删除的节点 或者 用于取代被删除节点的子节点(被删除节点的度为1)
+	 * 删除node之后的调整
+	 * @param node 被删除的节点 或者 用以取代被删除节点的子节点（当被删除节点的度为1）
 	 */
-	protected void afterRemove(Node<E> node) {
-		
-	}
+	protected void afterRemove(Node<E> node) { }
 
 	public void remove(E element) {
 		remove(node(element));
 	}
- 
+
 	public boolean contains(E element) {
 		return node(element) != null;
 	}
@@ -106,12 +106,13 @@ public class BST<E> extends BinaryTree<E> {
 			} else { // node == node.parent.right
 				node.parent.right = replacement;
 			}
-			//删除节点之后的处理
+			
+			// 删除节点之后的处理
 			afterRemove(replacement);
 		} else if (node.parent == null) { // node是叶子节点并且是根节点
 			root = null;
 			
-			//删除节点之后的处理
+			// 删除节点之后的处理
 			afterRemove(node);
 		} else { // node是叶子节点，但不是根节点
 			if (node == node.parent.left) {
@@ -119,7 +120,8 @@ public class BST<E> extends BinaryTree<E> {
 			} else { // node == node.parent.right
 				node.parent.right = null;
 			}
-			//删除节点之后的处理
+			
+			// 删除节点之后的处理
 			afterRemove(node);
 		}
 	}
