@@ -1,5 +1,8 @@
 package com.cx;
 
+import com.cx.Times.Task;
+import com.cx.file.FileInfo;
+import com.cx.file.Files;
 import com.cx.set.ListSet;
 import com.cx.set.Set;
 import com.cx.set.Set.Visitor;
@@ -40,8 +43,36 @@ public class Main {
 			}
 		});
 	}
+	static void testSet(Set<String> set,String[] words) {
+		for (int i = 0; i < words.length; i++) {
+			set.add(words[i]);
+		}
+		for (int i = 0; i < words.length; i++) {
+			set.contains(words[i]);
+		}
+		for (int i = 0; i < words.length; i++) {
+			set.remove(words[i]);
+		}
+	}
+	static void test3() {
+		FileInfo fileInfo = Files.read("D:\\file", new String[]{"java"});
+		System.out.println("文件数量：" + fileInfo.getFiles());
+		System.out.println("代码行数：" + fileInfo.getLines());
+		String[] words = fileInfo.words();
+		System.out.println("单词数量：" + fileInfo.words().length);
+		Times.test("ListSet", new Task() {
+			public void execute() {
+				testSet(new ListSet<>(), words);
+			}
+		});
+		Times.test("TreeSet", new Task() {
+			public void execute() {
+				testSet(new TreeSet<>(), words);
+			}
+		});
+	}
 	public static void main(String[] args) {
-		test1();
+		test3();
 
 	}
 
