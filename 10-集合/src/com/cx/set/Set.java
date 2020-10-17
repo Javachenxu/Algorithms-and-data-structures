@@ -1,6 +1,5 @@
 package com.cx.set;
 
-import com.sun.org.apache.bcel.internal.classfile.Visitor;
 
 public interface Set<E> {
 	int size();
