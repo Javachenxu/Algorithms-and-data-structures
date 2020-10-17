@@ -45,7 +45,7 @@ import java.util.Comparator;
 		//可能会导致更高层的祖父节点失衡【最多只需要O(logn)次调整】
 		
 		@Override
-		protected void afterRemove(Node<E> node,Node<E> replacement) {
+		protected void afterRemove(Node<E> node) {
 			while ((node = node.parent) != null) {
 				if (isBalanced(node)) {
 					// 更新高度
