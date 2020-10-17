@@ -73,7 +73,7 @@ public class BST<E> extends BinaryTree<E> {
 	public void remove(E element) {
 		remove(node(element));
 	}
-
+ 
 	public boolean contains(E element) {
 		return node(element) != null;
 	}
