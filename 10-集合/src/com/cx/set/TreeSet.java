@@ -1,10 +1,20 @@
 package com.cx.set;
 
+import java.util.Comparator;
+
 import com.cx.tree.BinaryTree;
 import com.cx.tree.RBTree;
 
 public class TreeSet<E> implements Set<E> {
-	private RBTree<E> tree = new RBTree<>();
+	private RBTree<E> tree;
+	//传个比较器
+	public TreeSet() {
+		this(null);
+	}
+	
+	public TreeSet(Comparator<E> comparator) {
+		tree = new RBTree<>(comparator);
+	}
 	
 	public int size() {
 		
