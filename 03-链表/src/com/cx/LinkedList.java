@@ -114,7 +114,6 @@ public class LinkedList<E> extends AbstractList<E> {
 		return node.element;
 	}
 
-	@Override
 	public int indexOf(E element) {
 		if (element == null) {
 			Node<E> node = first;
@@ -133,6 +132,8 @@ public class LinkedList<E> extends AbstractList<E> {
 		}
 		return ELEMENT_NOT_FOUND;
 	}
+	
+	
 	
 	/**
 	 * 获取index位置对应的节点对象
